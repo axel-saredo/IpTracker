@@ -1,0 +1,24 @@
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card {
+  height: 25%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+form {
+  display: flexbox;
+}
+
+.button-holder {
+  justify-content: flex-end;
+  display: flex;
+  margin-top: 5%;
+}

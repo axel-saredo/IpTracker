@@ -40,7 +40,7 @@ export class CountryInfoService {
 
   getCurrenciesRates() {
     return this.http.get<any>(
-      `http://data.fixer.io/api/latest?access_key=651cbed40b78f70e57cce52b8ce1082e&format=1`
+      `http://data.fixer.io/api/latest?access_key=API_KEY`
     );
   }
 
