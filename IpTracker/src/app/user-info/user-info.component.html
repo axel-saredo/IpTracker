@@ -1,0 +1,41 @@
+<main>
+  <mat-card>
+    <mat-card-title>
+      IpTracker
+    </mat-card-title>
+    <form (submit)="showCountryInfo(userInfoForm)" #userInfoForm="ngForm">
+      <mat-form-field class="example-full-width" color="accent">
+        <mat-label>Enter your name</mat-label>
+        <input
+          matInput
+          name="userName"
+          ngModel
+          type="text"
+          placeholder="Enter your name"
+          #nameInput="ngModel"
+          required
+          userName
+        />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" color="accent">
+        <mat-label>Enter your IP address</mat-label>
+        <input
+          matInput
+          name="ipAddress"
+          ngModel
+          type="text"
+          placeholder="Enter your IP address"
+          #ipAddressInput="ngModel"
+          required
+          ipAddress
+        />
+      </mat-form-field>
+      <div class="button-holder">
+        <button mat-raised-button color="accent" type="submit">
+          TRACK IP
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</main>
