@@ -15,6 +15,7 @@ export class CountryInfoComponent implements OnInit {
       languages: string[];
       localTimes: string[];
       distanceToBs: number;
+      dollarPrice: string;
     }
   ) {}
 
