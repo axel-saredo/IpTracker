@@ -6,6 +6,7 @@ import { CountryInfoComponent } from "../country-info/country-info.component";
 
 import { getLocalTime } from "../utils/local-time.calculator";
 import { getDistanceToBuenosAiresInKm } from "../utils/distance-to-bs.calculator";
+import { getDollarPriceInCurrency } from "../utils/usd-to-currency.convertor";
 
 @Component({
   selector: "app-user-info",
@@ -21,6 +22,8 @@ export class UserInfoComponent implements OnInit {
   private countryLanguages: string[] = [];
   private countryLocalTimes: string[] = [];
   private distanceToBuenosAires: string;
+  private countryCurrency: string;
+  private dollarPriceInCountryCurrency: string;
 
   constructor(
     private countryInfoService: CountryInfoService,
@@ -61,20 +64,35 @@ export class UserInfoComponent implements OnInit {
             countryLongitude
           );
 
-          this.dialog.open(CountryInfoComponent, {
-            data: {
-              country: this.countryName,
-              countryIsoCode: this.countryIsoCode,
-              languages: this.countryLanguages,
-              localtimes: this.countryLocalTimes,
-              localTimes: this.countryLocalTimes,
-              distanceToBs: this.distanceToBuenosAires
-            }
-          });
+          this.countryCurrency = response[0].currencies[0].code;
 
-          this.dialog.afterAllClosed.subscribe(_ => {
-            this.countryLanguages = [];
-            this.countryLocalTimes = [];
+          this.countryInfoService.getCurrenciesRates().subscribe(response => {
+            const dollarValue = response.rates.EUR / response.rates.USD;
+            this.dollarPriceInCountryCurrency =
+              getDollarPriceInCurrency(
+                this.countryCurrency,
+                response,
+                dollarValue
+              ) +
+              " " +
+              this.countryCurrency;
+
+            this.dialog.open(CountryInfoComponent, {
+              data: {
+                country: this.countryName,
+                countryIsoCode: this.countryIsoCode,
+                languages: this.countryLanguages,
+                localtimes: this.countryLocalTimes,
+                localTimes: this.countryLocalTimes,
+                distanceToBs: this.distanceToBuenosAires,
+                dollarPrice: this.dollarPriceInCountryCurrency
+              }
+            });
+
+            this.dialog.afterAllClosed.subscribe(_ => {
+              this.countryLanguages = [];
+              this.countryLocalTimes = [];
+            });
           });
         });
     });
