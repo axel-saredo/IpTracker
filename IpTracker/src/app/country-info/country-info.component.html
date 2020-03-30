@@ -1,4 +1,18 @@
 <h1 mat-dialog-title>{{ data.country }}</h1>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Okay</button>
+<div mat-dialog-content>
+  <ul>
+    <li>Country ISO code: {{ data.countryIsoCode }}</li>
+    <li>Languages:</li>
+    <ul>
+      <li *ngFor="let language of data.languages">{{ language }}</li>
+    </ul>
+    <li>Local Times:</li>
+    <ul>
+      <li *ngFor="let localTime of data.localTimes">{{ localTime }}</li>
+    </ul>
+    <li>Distance to Buenos Aires: {{ data.distanceToBs }} km</li>
+  </ul>
+  <button mat-button mat-dialog-close>
+    Okay
+  </button>
 </div>

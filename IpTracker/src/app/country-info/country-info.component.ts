@@ -7,7 +7,16 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
   styleUrls: ["./country-info.component.css"]
 })
 export class CountryInfoComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { country: string }) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      country: string;
+      countryIsoCode: string;
+      languages: string[];
+      localTimes: string[];
+      distanceToBs: number;
+    }
+  ) {}
 
   ngOnInit() {}
 }
