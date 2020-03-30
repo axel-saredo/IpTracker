@@ -16,6 +16,7 @@ import { getDollarPriceInCurrency } from "../utils/usd-to-currency.convertor";
 export class UserInfoComponent implements OnInit {
   userName: string;
   ipAddress: string;
+  formIsSubmitted: boolean;
 
   private countryName: string;
   private countryIsoCode: string;
@@ -34,6 +35,8 @@ export class UserInfoComponent implements OnInit {
     if (form.invalid) {
       return;
     }
+
+    this.formIsSubmitted = true;
 
     const ipAddress = form.value.ipAddress;
 
@@ -90,6 +93,7 @@ export class UserInfoComponent implements OnInit {
             });
 
             this.dialog.afterAllClosed.subscribe(_ => {
+              this.formIsSubmitted = false;
               this.countryLanguages = [];
               this.countryLocalTimes = [];
             });
