@@ -1,5 +1,6 @@
 <main>
-  <mat-card>
+  <mat-spinner class="spinner" [diameter]="200" *ngIf="isLoading"></mat-spinner>
+  <mat-card *ngIf="!isLoading">
     <mat-card-title>
       IpTracker
     </mat-card-title>

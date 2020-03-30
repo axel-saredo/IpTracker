@@ -17,6 +17,7 @@ export class UserInfoComponent implements OnInit {
   userName: string;
   ipAddress: string;
   formIsSubmitted: boolean;
+  isLoading = false;
 
   private countryName: string;
   private countryIsoCode: string;
@@ -35,6 +36,8 @@ export class UserInfoComponent implements OnInit {
     if (form.invalid) {
       return;
     }
+
+    this.isLoading = true;
 
     this.formIsSubmitted = true;
 
@@ -79,6 +82,8 @@ export class UserInfoComponent implements OnInit {
               ) +
               " " +
               this.countryCurrency;
+
+            this.dialog.afterOpened.subscribe(_ => (this.isLoading = false));
 
             this.dialog.open(CountryInfoComponent, {
               data: {

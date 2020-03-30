@@ -17,8 +17,16 @@ form {
   display: flexbox;
 }
 
+mat-spinner {
+  margin: 0 auto;
+}
+
 .button-holder {
   justify-content: flex-end;
   display: flex;
   margin-top: 5%;
+}
+
+.spinner::ng-deep circle {
+  stroke: white;
 }
