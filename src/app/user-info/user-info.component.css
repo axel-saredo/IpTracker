@@ -6,7 +6,19 @@ main {
 }
 
 mat-card {
-  height: 25%;
+  height: 33%;
+}
+
+@media (min-width: 900px) {
+  mat-card {
+    height: 25%;
+  }
+}
+
+@media (min-width: 600px) {
+  mat-card {
+    height: 25%;
+  }
 }
 
 mat-form-field {
@@ -24,7 +36,6 @@ mat-spinner {
 .button-holder {
   justify-content: flex-end;
   display: flex;
-  margin-top: 5%;
 }
 
 .spinner::ng-deep circle {
